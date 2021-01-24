@@ -52,7 +52,7 @@ module.exports = (app) => {
 
 /**
 * @swagger
-* /users:
+* /signup:
 *   post:
 *     summary: register user.
 *     requestBody:
@@ -136,7 +136,7 @@ module.exports = (app) => {
 
 /**
  * @swagger
- * /users:
+ * /getusers:
  *   get:
  *     summary: Retrieve a list of registered users.
  *     description: Retrieve a list of registered users form MongoDB.
