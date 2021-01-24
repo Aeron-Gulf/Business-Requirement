@@ -1,27 +1,37 @@
 const objModels = require('../models');
-const User = objModels.user
+const User = objModels.user;
 
 exports.signUp = (req, res) => {
-    if(!req.body.email || !req.body.fullName || !req.body.gender || !req.body.age) {
+    const profile = JSON.parse(req.body.profileInfo);
+    if(!profile.email || !profile.fullName || !profile.gender || !profile.age) {
         return res.status(400).send({
             message: 'user is not be empty field'
-        })
-    }
+        });
+    };
+
+    const url = req.protocol + '://' + req.get('host');
 
     const user = new User({
-        email: req.body.email,
-        fullName: req.body.fullName,
-        gender: req.body.gender,
-        age: req.body.age,
-        address: req.body.address,
-        phone: req.body.phone
+        email: profile.email,
+        fullName: profile.fullName,
+        gender: profile.gender,
+        age: profile.age,
+        address: profile.address,
+        phone: profile.phone,
+        profileImg: url + '/public/' + req.file.filename
     });
 
     user.save(err => {
         if (err) {
-            return res.status(500).send({ message: err })
-        }
+            return res.status(500).send({ message: err });
+        };
 
-        res.send({ message: "User was registered successfully!" })
-    })
-}
+        res.send({ message: "User was registered successfully!" });
+    });
+};
+
+exports.getAll = (req, res) => {
+    User.find({})
+    .then(users => res.send(users))
+    .catch(err => res.status(500).send({ message: err }));
+};

@@ -23,7 +23,10 @@ const userSchema = new Schema({
     },
     phone: {
         type: String
+    },
+    profileImg: {
+        type: String
     }
 });
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('user', userSchema);

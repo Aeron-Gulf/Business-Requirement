@@ -5,22 +5,23 @@ const mongoDb = require('./mongoDb')
 
 const corsOption ={
     origin: 'http://localhost:3000'
-}
+};
 
 mongoDb.main();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
-app.use(cors(corsOption))
+app.use(bodyParser.json());
+app.use(cors(corsOption));
+app.use('/public', require('express').static('public'));
 
 require('./app/routes/user.routes')(app);
 
 app.get('/', (req, res) => {
     res.json({
-        'message': 'welcome to note'
-    })
-})
+        'message': 'welcome to first app'
+    });
+});
 
 app.listen(5000, () => {
-    console.log('server is listening on port 5000')
+    console.log('server is listening on port 5000');
 })

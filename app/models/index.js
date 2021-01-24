@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise;
 
 const objModels = {
     mongoose,
-    user: require("./user.model"),
+    user: require("./user.model")
 };
 
 module.exports = objModels;
