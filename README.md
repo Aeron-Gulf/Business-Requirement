@@ -9,3 +9,5 @@ npm i
 ```sh
 npm start
 ```
+## Swagger
+Run **http://localhost:5000/docs/** to connect swagger UI. 

@@ -26,12 +26,12 @@ exports.signUp = (req, res) => {
             return res.status(500).send({ message: err });
         };
 
-        res.send({ message: "User was registered successfully!" });
+        res.status(200).send({ message: "User was registered successfully!" });
     });
 };
 
 exports.getAll = (req, res) => {
     User.find({})
-    .then(users => res.send(users))
+    .then(users => res.status(200).send(users))
     .catch(err => res.status(500).send({ message: err }));
 };
